@@ -24,4 +24,8 @@ export class LoginComponent {
       new PasswordField({ validations: { required: true } }),
     ];
   }
+
+  getFormValue(value: any) {
+    console.log(value);
+  }
 }

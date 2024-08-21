@@ -1,0 +1,28 @@
+<div class="form-field" [formGroup]="formGroup">
+  @if (field.label) {
+    <label class="form-field__label" [for]="field.name">{{ field.label }}</label>
+  }
+  <div class="form-field__input-container">
+    <input
+    class="form-field__input"
+    [id]="field.name"
+    [type]="field.type == 'password' ? (isPasswordFieldType ? 'password' : 'text') : field.type"
+    [placeholder]="field.placeholder"
+    [formControlName]="field.name"
+    [ngClass]="{'form-field__input-error': field.control.invalid && isSubmited}"/>
+    @if (field.name === 'password') {
+      <span
+        class="form-field__eye icon"
+        [ngClass]="{'icon--eye': isPasswordFieldType, 'icon--crossed-eye': !isPasswordFieldType}"
+        (click)="onTogglePasswordFieldType()">
+      </span>
+    }
+  </div>
+  @if (field.control.invalid && isSubmited) {
+    @if (field.control.hasError('required')) {
+      <div class="form-field__error">The field is required</div>
+    } @else if (field.control.hasError('email')) {
+      <div class="form-field__error">The field must be an email</div>
+    }
+  }
+</div>

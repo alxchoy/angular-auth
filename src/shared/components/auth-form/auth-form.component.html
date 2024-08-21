@@ -1,34 +1,8 @@
 <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
   @for (field of fields; track field) {
-    <div class="auth-form__field">
-      @if (field.label) {
-        <label class="auth-form__label" [for]="field.name">{{ field.label }}</label>
-      }
-      <div class="auth-form__input-container">
-        <input
-        class="auth-form__input"
-        [id]="field.name"
-        [type]="field.type == 'password' ? (isPasswordFieldType ? 'password' : 'text') : field.type"
-        [placeholder]="field.placeholder"
-        [formControlName]="field.name" />
-        @if (field.name === 'password') {
-          <span
-            class="auth-form__eye icon"
-            [ngClass]="{'icon--eye': isPasswordFieldType, 'icon--crossed-eye': !isPasswordFieldType}"
-            (click)="onTogglePasswordFieldType()">
-          </span>
-        }
-      </div>
-      @if (field.control.invalid && isSubmited) {
-        @if (field.control.hasError('required')) {
-          <div class="auth-form__field-error">The field is required</div>
-        } @else if (field.control.hasError('email')) {
-          <div class="auth-form__field-error">The field must be an email</div>
-        }
-      }
-    </div>
+    <ch-form-field [field]="field" [isSubmited]="isSubmited" [formGroup]="form"></ch-form-field>
   }
-  <div class="auth-form__field">
+  <div class="auth-form__buttons">
     <button type="submit "class="auth-form__button">Log in</button>
     <a class="auth-form__button auth-form__button--outline">Sign up</a>
   </div>

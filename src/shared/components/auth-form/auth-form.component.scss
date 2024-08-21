@@ -3,35 +3,11 @@
   gap: 20px;
   flex-direction: column;
 
-  &__field {
+  &__buttons {
     display: flex;
     gap: 8px;
     flex-direction: column;
     position: relative;
-  }
-
-  &__field-error {
-    color: #C71508;
-    font-size: 13px;
-  }
-
-  &__input-container {
-    position: relative;
-  }
-
-  &__input {
-    border: 1px solid #bebebe;
-    padding: 10px 5px;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      color: #bebebe;
-    }
   }
 
   &__button {
@@ -55,23 +31,6 @@
         background-color: #C71508;
         color: #fff;
       }
-    }
-  }
-
-  &__eye {
-    position: absolute;
-    right: 5px;
-    top: 9px;
-    cursor: pointer;
-    &:hover {
-      background-color: #bebebe;
-      border-radius: 12px;
-    }
-  }
-
-  &.ng-submitted {
-    .ng-invalid {
-      border-color: #C71508;
     }
   }
 }

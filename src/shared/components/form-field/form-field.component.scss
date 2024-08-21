@@ -1,0 +1,44 @@
+.form-field {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+  &__input-container {
+    position: relative;
+  }
+
+  &__input {
+    border: 1px solid #bebebe;
+    padding: 10px 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: #bebebe;
+    }
+  }
+
+  &__input-error {
+    border-color: #C71508;
+  }
+
+  &__error {
+    color: #C71508;
+    font-size: 13px;
+  }
+
+  &__eye {
+    position: absolute;
+    right: 5px;
+    top: 9px;
+    cursor: pointer;
+    &:hover {
+      background-color: #bebebe;
+      border-radius: 12px;
+    }
+  }
+}
