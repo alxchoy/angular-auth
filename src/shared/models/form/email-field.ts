@@ -1,5 +1,5 @@
 import { FormField } from '@shared/models/form/form-field';
-import { ValidationTypeMap } from '@shared/models/form/types';
+import { FieldValidationsType } from '@shared/models/form/form-types';
 
 export class EmailField extends FormField {
   constructor(
@@ -8,7 +8,7 @@ export class EmailField extends FormField {
       placeholder?: string;
       label?: string;
       value?: string;
-      validations?: ValidationTypeMap;
+      validations?: FieldValidationsType;
     } = {}
   ) {
     super({

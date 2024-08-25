@@ -9,8 +9,8 @@
     [type]="field.type == 'password' ? (isPasswordFieldType ? 'password' : 'text') : field.type"
     [placeholder]="field.placeholder"
     [formControlName]="field.name"
-    [ngClass]="{'form-field__input-error': field.control.invalid && isSubmited}"/>
-    @if (field.name === 'password') {
+    [ngClass]="{'form-field__input-error': field.control.invalid && field.control.dirty}"/>
+    @if (field.type === 'password') {
       <span
         class="form-field__eye icon"
         [ngClass]="{'icon--eye': isPasswordFieldType, 'icon--crossed-eye': !isPasswordFieldType}"
@@ -18,7 +18,7 @@
       </span>
     }
   </div>
-  @if (field.control.invalid && isSubmited) {
+  @if (field.control.invalid && field.control.dirty) {
     @if (field.control.hasError('required')) {
       <div class="form-field__error">The field is required</div>
     } @else if (field.control.hasError('email')) {

@@ -1,5 +1,6 @@
+import { ValidatorFn } from '@angular/forms';
 import { FormField } from '@shared/models/form/form-field';
-import { ValidationTypeMap } from '@shared/models/form/types';
+import { FieldValidationsType } from '@shared/models/form/form-types';
 
 export class PasswordField extends FormField {
   constructor(
@@ -7,8 +8,9 @@ export class PasswordField extends FormField {
       name?: string;
       placeholder?: string;
       label?: string;
-      validations?: ValidationTypeMap;
+      validations?: FieldValidationsType;
       value?: string;
+      customValidations?: ValidatorFn | ValidatorFn[];
     } = {}
   ) {
     super({
@@ -18,6 +20,7 @@ export class PasswordField extends FormField {
       validations: opts.validations || {},
       type: 'password',
       value: opts.value || '',
+      customValidations: opts.customValidations,
     });
   }
 }

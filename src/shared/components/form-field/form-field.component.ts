@@ -11,9 +11,8 @@ import { FormField } from '@shared/models/form/form-field';
   imports: [ReactiveFormsModule, CommonModule],
 })
 export class FormFieldComponent {
-  @Input({ required: true }) field!: FormField;
-  @Input({ required: true }) isSubmited!: boolean;
   @Input({ required: true }) formGroup!: FormGroup;
+  @Input({ required: true }) field!: FormField;
   isPasswordFieldType = false;
 
   constructor() {}
