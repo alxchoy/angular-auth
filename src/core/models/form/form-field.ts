@@ -1,5 +1,6 @@
 import { FormControl, Validators, ValidatorFn } from '@angular/forms';
-import { FieldValidationsType } from './form-types';
+import { matchTo } from '@shared/helpers/form-validations';
+import { FieldValidationsType } from './form.types';
 
 export class FormField {
   name: string;
@@ -9,7 +10,6 @@ export class FormField {
   value: string;
   control: FormControl;
   validations: FieldValidationsType;
-  cumstonValidations: ValidatorFn | ValidatorFn[];
 
   constructor(opts: {
     name: string;
@@ -18,7 +18,6 @@ export class FormField {
     type?: string;
     value: string;
     validations: FieldValidationsType;
-    customValidations?: ValidatorFn | ValidatorFn[];
   }) {
     this.name = opts.name;
     this.placeholder = opts.placeholder;
@@ -26,16 +25,12 @@ export class FormField {
     this.type = opts.type || 'text';
     this.value = opts.value;
     this.validations = opts.validations;
-    this.cumstonValidations = opts.customValidations || [];
     this.control = new FormControl(this.value, [
-      ...this.setValidations(this.validations, this.cumstonValidations),
+      ...this.setValidations(this.validations),
     ]);
   }
 
-  private setValidations(
-    validations: FieldValidationsType,
-    customValidations: ValidatorFn | ValidatorFn[]
-  ): ValidatorFn[] {
+  private setValidations(validations: FieldValidationsType): ValidatorFn[] {
     if (Object.keys(validations).length == 0 || validations == undefined) {
       return [];
     }
@@ -49,15 +44,11 @@ export class FormField {
       maxLength: validations.maxLength
         ? Validators.maxLength(validations.maxLength)
         : false,
-      matchTo: validations.matchTo,
+      matchTo: validations.matchTo ? matchTo(validations.matchTo) : false,
     };
 
-    const validatorsList = (
-      Object.keys(validatorMap) as (keyof typeof validatorMap)[]
-    )
+    return (Object.keys(validatorMap) as (keyof typeof validatorMap)[])
       .map((k) => validatorMap[k])
-      .filter((i) => i);
-
-    return [...validatorsList.concat(customValidations)] as ValidatorFn[];
+      .filter((i) => i) as ValidatorFn[];
   }
 }

@@ -23,6 +23,8 @@
       <div class="form-field__error">The field is required</div>
     } @else if (field.control.hasError('email')) {
       <div class="form-field__error">The field must be an email</div>
+    } @else if (field.control.hasError('matchInvalid')) {
+      <div class="form-field__error">The field doesn't match</div>
     }
   }
 </div>

@@ -7,7 +7,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { FormField } from '../models/form/form-field';
+import { FormField } from '@core/models/form';
 
 @Injectable()
 export class FormService {

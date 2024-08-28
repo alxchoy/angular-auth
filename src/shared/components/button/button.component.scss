@@ -1,0 +1,27 @@
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 11px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+
+  &--primary {
+    background-color: #C71508;
+    color: #fff;
+    &:hover {
+      background-color: #A21308;
+    }
+  }
+
+  &--outline {
+    background-color: #fff;
+    border: 1px solid #C71508;
+    color: #C71508;
+    padding: 10px;
+    &:hover {
+      background-color: #C71508;
+      color: #fff;
+    }
+  }
+}

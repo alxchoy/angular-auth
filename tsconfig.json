@@ -26,9 +26,10 @@
     "baseUrl": "./src",
     "paths": {
       "@shared/*": ["./shared/*"],
-      "@modules": ["./modules/*"],
+      // "@modules": ["./modules/*"],
       "@auth/*": ["./modules/auth/*"],
       "@configs/*": ["./configs/*"],
+      "@core/*": ["./core/*"],
       "@environments/*": ["./environments/*"]
     }
   },

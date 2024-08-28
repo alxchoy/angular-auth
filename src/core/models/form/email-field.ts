@@ -1,5 +1,5 @@
-import { FormField } from '@shared/models/form/form-field';
-import { FieldValidationsType } from '@shared/models/form/form-types';
+import { FormField } from './form-field';
+import { FieldValidationsType } from './form.types';
 
 export class EmailField extends FormField {
   constructor(

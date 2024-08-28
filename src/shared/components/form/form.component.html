@@ -1,9 +1,0 @@
-<form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  @for (field of fields; track field) {
-    <ch-form-field [formGroup]="form" [field]="field"></ch-form-field>
-  }
-  <div class="auth-form__buttons">
-    <button type="submit "class="auth-form__button">Log in</button>
-    <a class="auth-form__button auth-form__button--outline">Sign up</a>
-  </div>
-</form>

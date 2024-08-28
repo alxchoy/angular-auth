@@ -1,5 +1,11 @@
-<div class="auth-form-container">
-  <img class="auth-form-container__image" src="/angular.png" />
-  <ch-form [form]="loginForm" [fields]="fields" (onSubmitEvent)="onSubmitForm($event)"></ch-form>
+<div class="login">
+  <img class="login__image" src="/angular.png" />
+  <form class="login__form" [formGroup]="loginForm">
+    @for (field of fields; track $index) {
+      <ch-form-field [formGroup]="loginForm" [field]="field"></ch-form-field>
+    }
+    <ch-button [btn]="loginBtn"></ch-button>
+  </form>
+  <a class="login__register-link" href="/register">Register</a>
   <p class="divider">OR</p>
 </div>
