@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { FormField, EmailField, PasswordField } from '@core/models/form';
-import { AuthService, FormService } from '@core/services';
-import { LoginFormGroup } from '@auth/models';
-import { FormFieldComponent } from '@shared/components/form-field/form-field.component';
-import { Button, ButtonComponent } from '@shared/components/button';
-import { markAsDirtyFields } from '@shared/helpers';
+import { FormField, EmailField, PasswordField } from 'models/form';
+import { AuthService, FormService } from 'services';
+import { LoginFormType } from 'models/auth.types';
+import { FormFieldComponent } from 'components/form-field/form-field.component';
+import { Button, ButtonComponent } from 'components/button';
+import { markAsDirtyFields } from 'helpers';
 
 @Component({
   selector: 'auth-login',
@@ -16,7 +16,7 @@ import { markAsDirtyFields } from '@shared/helpers';
   providers: [AuthService, FormService],
 })
 export class LoginComponent {
-  loginForm!: FormGroup<LoginFormGroup>;
+  loginForm!: FormGroup<LoginFormType>;
   fields!: FormField[];
   loginBtn!: Button;
 

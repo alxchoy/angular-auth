@@ -25,12 +25,15 @@
     ],
     "baseUrl": "./src",
     "paths": {
-      "@shared/*": ["./shared/*"],
-      // "@modules": ["./modules/*"],
-      "@auth/*": ["./modules/auth/*"],
+      "@components/*": ["./components/*"],
+      "@models/*": ["./models/*"],
+      "@models": ["./models/index"],
+      "@pages/*": ["./pages/*"],
       "@configs/*": ["./configs/*"],
-      "@core/*": ["./core/*"],
-      "@environments/*": ["./environments/*"]
+      "@helpers/*": ["./helpers/*"],
+      "@environments/*": ["./environments/*"],
+      "@services/*": ["./services/*"],
+      "@services": ["./services/index"]
     }
   },
   "angularCompilerOptions": {

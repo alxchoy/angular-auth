@@ -1,5 +1,5 @@
 import { FormControl, Validators, ValidatorFn } from '@angular/forms';
-import { matchTo } from '@shared/helpers/form-validations';
+import { matchTo } from 'helpers/form-validations';
 import { FieldValidationsType } from './form.types';
 
 export class FormField {

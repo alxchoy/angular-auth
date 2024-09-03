@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { FormField } from '@core/models/form';
+import { FormField } from 'models/form';
 
 @Component({
   selector: 'ch-form-field',

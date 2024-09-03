@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RegisterFormGroup } from '@auth/models';
-import { FormField, EmailField, PasswordField } from '@core/models/form';
-import { AuthService, FormService } from '@core/services';
-import { Button, ButtonComponent } from '@shared/components/button';
-import { FormFieldComponent } from '@shared/components/form-field/form-field.component';
-import { markAsDirtyFields } from '@shared/helpers';
+import { RegisterFormType } from '@models';
+import { FormField, EmailField, PasswordField } from '@models/form';
+import { AuthService, FormService } from '@services';
+import { Button, ButtonComponent } from '@components/button';
+import { FormFieldComponent } from '@components/form-field/form-field.component';
+import { markAsDirtyFields } from 'helpers';
 
 @Component({
   selector: 'ch-register',
@@ -16,7 +16,7 @@ import { markAsDirtyFields } from '@shared/helpers';
   providers: [AuthService, FormService],
 })
 export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup<RegisterFormGroup>;
+  registerForm!: FormGroup<RegisterFormType>;
   fields!: FormField[];
   registerBtn!: Button;
 
@@ -41,7 +41,10 @@ export class RegisterComponent implements OnInit {
       return;
     }
     console.log(this.registerForm.value);
-    // this.authService.register(value);
+    const { email, password } = this.registerForm.value;
+    this.authService
+      .register({ email: email!, password: password! })
+      .subscribe(console.log);
   }
 
   private setFormFields() {
