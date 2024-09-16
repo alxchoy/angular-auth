@@ -5,7 +5,7 @@ import { AuthService, FormService } from 'services';
 import { LoginFormType } from 'models/auth.types';
 import { FormFieldComponent } from 'components/form-field/form-field.component';
 import { Button, ButtonComponent } from 'components/button';
-import { markAsDirtyFields } from 'helpers';
+import { markAsTouchedFields } from 'helpers';
 
 @Component({
   selector: 'auth-login',
@@ -48,7 +48,7 @@ export class LoginComponent {
   onSubmitForm() {
     console.log(this.loginForm);
     if (this.loginForm.invalid) {
-      markAsDirtyFields(this.loginForm);
+      markAsTouchedFields(this.loginForm);
       return;
     }
     console.log(this.loginForm.value);
