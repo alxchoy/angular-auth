@@ -52,6 +52,6 @@ export class LoginComponent {
       return;
     }
     console.log(this.loginForm.value);
-    // this.authService.register(value);
+    this.authService.register({ email: 'ad', password: 'asdf' }).subscribe();
   }
 }
