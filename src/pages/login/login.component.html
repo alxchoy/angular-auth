@@ -1,11 +1,18 @@
 <div class="login">
-  <img class="login__image" src="/angular.png" />
-  <form class="login__form" [formGroup]="loginForm">
-    @for (field of fields; track $index) {
-      <ch-form-field [formGroup]="loginForm" [field]="field"></ch-form-field>
-    }
-    <ch-button [btn]="loginBtn"></ch-button>
-  </form>
-  <a class="login__register-link" href="/register">Register</a>
-  <p class="divider">OR</p>
+  <div class="login__wrapper">
+    <div class="grow">
+      <h1 class="mb-2 text-h1">SignIn</h1>
+      <form class="flex flex-col gap-5" [formGroup]="loginForm">
+        @for (field of fields; track $index) {
+          <ch-form-field
+            [formGroup]="loginForm"
+            [field]="field"
+          ></ch-form-field>
+        }
+        <ch-button [btn]="loginBtn"></ch-button>
+        <ch-button [btn]="registerBtn"></ch-button>
+      </form>
+    </div>
+    <img class="max-w-[50%]" src="/home-cinema.svg" />
+  </div>
 </div>

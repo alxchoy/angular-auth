@@ -15,6 +15,7 @@ export class ButtonComponent implements OnInit {
   ngOnInit(): void {
     this.btn = {
       class: this.btn.class || 'primary',
+      type: this.btn.type || 'btn',
       ...this.btn,
     };
   }

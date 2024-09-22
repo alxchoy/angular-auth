@@ -1,0 +1,23 @@
+.auth-form-divider {
+  text-align: center;
+  position: relative;
+  margin: 1rem 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 40%;
+    border-top: 1px solid #C71508;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0.75rem;
+    width: 40%;
+    border-top: 1px solid #C71508;
+  }
+}

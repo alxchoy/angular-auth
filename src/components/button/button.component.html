@@ -1,1 +1,12 @@
-<button class="btn btn--{{btn.class}}" (click)="btn.onAction?.()">{{ btn.label }}</button>
+@switch (btn.type) {
+  @case ("btn") {
+    <button class="btn btn--{{ btn.class }}" (click)="btn.onAction?.()">
+      {{ btn.label }}
+    </button>
+  }
+  @case ("link") {
+    <a class="btn btn--{{ btn.class }}" href="{{ btn.goTo }}">{{
+      btn.label
+    }}</a>
+  }
+}

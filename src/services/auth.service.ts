@@ -17,4 +17,8 @@ export class AuthService {
   register({ email, password }: RegisterReq): Observable<AuthRes> {
     return this.authRepository.signUp({ email, password });
   }
+
+  login({ email, password }: LoginReq): Observable<AuthRes> {
+    return this.authRepository.signIn({ email, password });
+  }
 }

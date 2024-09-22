@@ -1,27 +1,21 @@
 .btn {
-  border: none;
-  border-radius: 5px;
-  padding: 11px;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
+  @apply border border-primary rounded;
+  @apply block;
+  @apply text-center;
+  @apply w-full;
+  @apply py-2.5;
 
   &--primary {
-    background-color: #C71508;
-    color: #fff;
+    @apply bg-primary text-white;
     &:hover {
-      background-color: #A21308;
+      @apply bg-primaryDark;
     }
   }
 
   &--outline {
-    background-color: #fff;
-    border: 1px solid #C71508;
-    color: #C71508;
-    padding: 10px;
+    @apply text-primary;
     &:hover {
-      background-color: #C71508;
-      color: #fff;
+      @apply bg-primaryLight text-white;
     }
   }
 }

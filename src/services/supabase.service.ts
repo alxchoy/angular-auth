@@ -37,7 +37,12 @@ export class SupabaseService implements AuthRepository {
       .pipe(map((data) => ({ user: { id: data.id, email: data.email } })));
   }
 
-  signIn(value: RegisterReq) {
-    return 'signIn';
+  signIn({ email, password }: RegisterReq): Observable<AuthRes> {
+    return this.http
+      .post<AuthResSupabase>(`${this.authUrl}/token?grant_type=password`, {
+        email,
+        password,
+      })
+      .pipe(map((data) => ({ user: { id: data.id, email: data.email } })));
   }
 }
