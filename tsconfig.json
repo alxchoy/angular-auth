@@ -25,15 +25,10 @@
     ],
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["./components/*"],
-      "@models/*": ["./models/*"],
-      "@models": ["./models/index"],
-      "@pages/*": ["./pages/*"],
-      "@configs/*": ["./configs/*"],
-      "@helpers/*": ["./helpers/*"],
-      "@environments/*": ["./environments/*"],
-      "@services/*": ["./services/*"],
-      "@services": ["./services/index"]
+      "@core/*": ["./app/core/*"],
+      "@environments/*": ["./app/environments/*"],
+      "@features/*": ["./app/features/*"],
+      "@shared/*": ["./app/shared/*"]
     }
   },
   "angularCompilerOptions": {
