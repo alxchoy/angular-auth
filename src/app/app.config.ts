@@ -27,8 +27,8 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([serverErrorInterceptor, supabaseApiKeyInterceptor])
+      withInterceptors([serverErrorInterceptor, supabaseApiKeyInterceptor]),
     ),
-    { provide: ErrorHandler, useClass: AuthErrorHandler },
+    // { provide: ErrorHandler, useClass: AuthErrorHandler },
   ],
 };

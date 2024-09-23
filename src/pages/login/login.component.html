@@ -1,18 +1,7 @@
-<div class="login">
-  <div class="login__wrapper">
-    <div class="grow">
-      <h1 class="mb-2 text-h1">SignIn</h1>
-      <form class="flex flex-col gap-5" [formGroup]="loginForm">
-        @for (field of fields; track $index) {
-          <ch-form-field
-            [formGroup]="loginForm"
-            [field]="field"
-          ></ch-form-field>
-        }
-        <ch-button [btn]="loginBtn"></ch-button>
-        <ch-button [btn]="registerBtn"></ch-button>
-      </form>
-    </div>
-    <img class="max-w-[50%]" src="/home-cinema.svg" />
-  </div>
-</div>
+<ch-auth-form
+  [formTitle]="formTitle"
+  [authForm]="loginForm"
+  [fieldsForm]="fields"
+  [buttonsForm]="buttons"
+>
+</ch-auth-form>

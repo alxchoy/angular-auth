@@ -6,6 +6,7 @@ export interface Login {
 }
 
 export interface Register {
+  fullName: string;
   email: string;
   password: string;
   passwordConfirmation: string;
@@ -27,6 +28,7 @@ export type LoginReq = {
 export type RegisterReq = {
   email: string;
   password: string;
+  fullName: string;
 };
 
 export type AuthRes = {

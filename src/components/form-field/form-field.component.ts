@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormField } from 'models/form';
 
@@ -10,7 +10,7 @@ import { FormField } from 'models/form';
   styleUrl: './form-field.component.scss',
   imports: [ReactiveFormsModule, CommonModule],
 })
-export class FormFieldComponent {
+export class FormFieldComponent implements OnInit, AfterViewInit {
   @Input({ required: true }) formGroup!: FormGroup;
   @Input({ required: true }) field!: FormField;
   isPasswordFieldType = false;
@@ -24,4 +24,15 @@ export class FormFieldComponent {
   onTogglePasswordFieldType() {
     this.isPasswordFieldType = !this.isPasswordFieldType;
   }
+
+  onBlur(el: FocusEvent) {
+    const inputEl = el.target as HTMLInputElement;
+    if (inputEl.value.length > 0) {
+      inputEl.classList.add('has-content');
+    } else {
+      inputEl.classList.remove('has-content');
+    }
+  }
+
+  ngAfterViewInit() {}
 }

@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 export interface AuthRepository {
-  signUp: (value: LoginReq) => Observable<AuthRes>;
-  signIn: (value: RegisterReq) => Observable<AuthRes>;
+  signUp: (value: RegisterReq) => Observable<AuthRes>;
+  signIn: (value: LoginReq) => Observable<AuthRes>;
 }
 
 export const AUTH_PROVIDER = {

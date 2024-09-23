@@ -1,10 +1,7 @@
-<div class="register">
-  <img class="register__image" src="/angular.png" />
-  <form class="register__form" [formGroup]="registerForm">
-    @for (field of fields; track $index) {
-      <ch-form-field [formGroup]="registerForm" [field]="field"></ch-form-field>
-    }
-    <ch-button [btn]="registerBtn"></ch-button>
-  </form>
-  <a class="register__login-link" href="/login">Login</a>
-</div>
+<ch-auth-form
+  [formTitle]="formTitle"
+  [authForm]="registerForm"
+  [fieldsForm]="fields"
+  [buttonsForm]="buttons"
+>
+</ch-auth-form>

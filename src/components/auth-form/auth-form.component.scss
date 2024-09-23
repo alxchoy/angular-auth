@@ -1,0 +1,13 @@
+.auth-form {
+  @apply h-screen;
+  @apply flex justify-center items-center;
+  background: radial-gradient(circle, rgba(255,248,232,1) 0%, rgba(179,145,128,1) 90%, rgba(122,94,80,1) 100%);
+
+  &__wrapper {
+    @apply flex justify-between gap-16;
+    @apply w-[60rem];
+    @apply rounded-xl;
+    @apply shadow-2xl;
+    @apply p-8;
+  }
+}

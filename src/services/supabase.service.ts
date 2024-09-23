@@ -19,25 +19,26 @@ export class SupabaseService implements AuthRepository {
   constructor(private http: HttpClient) {
     this.client = createClient(
       environment.supabaseConfig.url,
-      environment.supabaseConfig.key
+      environment.supabaseConfig.key,
     );
   }
 
-  signUp({ email, password }: LoginReq): Observable<AuthRes> {
+  signUp({ email, password, fullName }: RegisterReq): Observable<AuthRes> {
     return this.http
       .post<AuthResSupabase>(
         `${this.authUrl}/signup?redirect_to=${encodeURIComponent(
-          `${window.location.origin}/home/`
+          `${window.location.origin}/home/`,
         )}`,
         {
           email,
           password,
-        }
+          data: { full_name: fullName },
+        },
       )
       .pipe(map((data) => ({ user: { id: data.id, email: data.email } })));
   }
 
-  signIn({ email, password }: RegisterReq): Observable<AuthRes> {
+  signIn({ email, password }: LoginReq): Observable<AuthRes> {
     return this.http
       .post<AuthResSupabase>(`${this.authUrl}/token?grant_type=password`, {
         email,

@@ -11,11 +11,11 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
   constructor(
-    @Inject(AUTH_PROVIDER.SUPABASE) private authRepository: AuthRepository
+    @Inject(AUTH_PROVIDER.SUPABASE) private authRepository: AuthRepository,
   ) {}
 
-  register({ email, password }: RegisterReq): Observable<AuthRes> {
-    return this.authRepository.signUp({ email, password });
+  register({ email, password, fullName }: RegisterReq): Observable<AuthRes> {
+    return this.authRepository.signUp({ email, password, fullName });
   }
 
   login({ email, password }: LoginReq): Observable<AuthRes> {

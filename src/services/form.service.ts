@@ -14,7 +14,7 @@ export class FormService {
   constructor(private formBuilder: FormBuilder) {}
 
   createFormGroup<T extends { [K in keyof T]: FormControl }>(
-    fields: FormField[]
+    fields: FormField[],
   ): FormGroup<T> {
     const group: { [key: string]: FormControl } = {};
 
@@ -24,4 +24,14 @@ export class FormService {
 
     return new FormGroup<T>(group as unknown as T);
   }
+
+  // createFormGroupTwo<T>(fields: FormField[]): FormGroup<T> {
+  //   const group: { [key: string]: FormControl } = {};
+
+  //   fields.forEach((field) => {
+  //     group[field.name] = field.control;
+  //   });
+
+  //   return new FormGroup<T>(group as unknown as T);
+  // }
 }

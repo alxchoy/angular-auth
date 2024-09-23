@@ -1,44 +1,33 @@
 .form-field {
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
+  position: relative;
 
-  &__input-container {
-    position: relative;
+  &__label {
+    @apply absolute top-3 left-2 z-10;
+    @apply text-[#bebebe];
+    transition: all .3s;
+
+    &:has(+ .form-field__input:focus),
+    &:has(+ .form-field__input.has-content) {
+      @apply text-inherit text-xs top-[2px];
+
+      & + input {
+        @apply pt-4 pb-[0.375rem];
+      }
+    }
   }
 
   &__input {
-    border: 1px solid #bebebe;
-    padding: 10px 5px;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      color: #bebebe;
-    }
+    @apply border border-gray rounded-md;
+    @apply py-[0.625rem] px-2;
+    @apply w-full;
+    @apply focus:outline-none;
   }
 
-  &__input-error {
-    border-color: #C71508;
-  }
-
-  &__error {
-    color: #C71508;
-    font-size: 13px;
+  .input-error {
+    @apply border-danger;
   }
 
   &__eye {
-    position: absolute;
-    right: 5px;
-    top: 9px;
-    cursor: pointer;
-    &:hover {
-      background-color: #bebebe;
-      border-radius: 12px;
-    }
+    @apply absolute top-[0.65rem] right-2 cursor-pointer;
   }
 }

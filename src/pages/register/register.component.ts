@@ -6,29 +6,35 @@ import { AuthService, FormService } from '@services';
 import { Button, ButtonComponent } from '@components/button';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
 import { markAsTouchedFields } from '@helpers/utils';
+import { AuthFormComponent } from '../../components/auth-form/auth-form.component';
+import { TextField } from '@models/form/text-field';
 
 @Component({
   selector: 'ch-register',
   standalone: true,
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  imports: [FormFieldComponent, ReactiveFormsModule, ButtonComponent],
+  imports: [
+    FormFieldComponent,
+    ReactiveFormsModule,
+    ButtonComponent,
+    AuthFormComponent,
+  ],
   providers: [AuthService, FormService],
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup<RegisterFormType>;
   fields!: FormField[];
-  registerBtn!: Button;
+  buttons!: Button[];
+  formTitle: string;
 
   constructor(
     private authService: AuthService,
-    private formService: FormService
+    private formService: FormService,
   ) {
+    this.formTitle = 'Register';
     this.setFormFields();
-    this.registerBtn = {
-      label: 'Register',
-      onAction: this.onSubmitForm.bind(this),
-    };
+    this.setFormButtons();
   }
 
   ngOnInit() {
@@ -36,19 +42,23 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log(this.registerForm);
     if (this.registerForm.invalid) {
       markAsTouchedFields(this.registerForm);
       return;
     }
 
-    const { email, password } = this.registerForm.value;
+    const { email, password, fullName } = this.registerForm.value;
     this.authService
-      .register({ email: email!, password: password! })
+      .register({ email: email!, password: password!, fullName: fullName! })
       .subscribe();
   }
 
   private setFormFields() {
+    const nameField = new TextField({
+      name: 'fullName',
+      label: 'Full name',
+      validations: { required: true },
+    });
     const emailField = new EmailField({
       validations: { required: true, email: true },
     });
@@ -58,7 +68,6 @@ export class RegisterComponent implements OnInit {
     const passwordConfirmField = new PasswordField({
       name: 'passwordConfirm',
       label: 'Password confirm',
-      placeholder: 'repeat the above password',
       validations: {
         required: true,
         matchTo: passwordField.control,
@@ -66,6 +75,13 @@ export class RegisterComponent implements OnInit {
       },
     });
 
-    this.fields = [emailField, passwordField, passwordConfirmField];
+    this.fields = [nameField, emailField, passwordField, passwordConfirmField];
+  }
+
+  private setFormButtons() {
+    this.buttons = [
+      { label: 'Register', onAction: this.onSubmitForm.bind(this) },
+      { label: 'Login', type: 'link', goTo: '/login', class: 'outline' },
+    ];
   }
 }

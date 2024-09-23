@@ -4,7 +4,6 @@ import { FieldValidationsType } from './form.types';
 
 export class FormField {
   name: string;
-  placeholder: string;
   type: string;
   label: string;
   value: string;
@@ -13,14 +12,12 @@ export class FormField {
 
   constructor(opts: {
     name: string;
-    placeholder: string;
     label: string;
     type?: string;
     value: string;
     validations: FieldValidationsType;
   }) {
     this.name = opts.name;
-    this.placeholder = opts.placeholder;
     this.label = opts.label;
     this.type = opts.type || 'text';
     this.value = opts.value;

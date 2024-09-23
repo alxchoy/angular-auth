@@ -6,25 +6,34 @@ import { LoginFormType } from 'models/auth.types';
 import { FormFieldComponent } from 'components/form-field/form-field.component';
 import { Button, ButtonComponent } from 'components/button';
 import { markAsTouchedFields } from 'helpers';
+import { AuthFormComponent } from '../../components/auth-form/auth-form.component';
 
 @Component({
   selector: 'auth-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  imports: [FormFieldComponent, ReactiveFormsModule, ButtonComponent],
+  imports: [
+    FormFieldComponent,
+    ReactiveFormsModule,
+    ButtonComponent,
+    AuthFormComponent,
+  ],
   providers: [AuthService, FormService],
 })
 export class LoginComponent {
   loginForm!: FormGroup<LoginFormType>;
   fields!: FormField[];
+  buttons!: Button[];
   loginBtn!: Button;
   registerBtn!: Button;
+  formTitle: string;
 
   constructor(
     private authService: AuthService,
     private formService: FormService,
   ) {
+    this.formTitle = 'Welcome back!';
     this.setFormFields();
     this.setFormButtons();
   }
@@ -34,7 +43,6 @@ export class LoginComponent {
   }
 
   onSubmitForm() {
-    console.log(this.loginForm);
     if (this.loginForm.invalid) {
       markAsTouchedFields(this.loginForm);
       return;
@@ -54,16 +62,9 @@ export class LoginComponent {
   }
 
   private setFormButtons() {
-    this.loginBtn = {
-      label: 'Login',
-      onAction: this.onSubmitForm.bind(this),
-    };
-
-    this.registerBtn = {
-      label: 'Register',
-      type: 'link',
-      goTo: '/register',
-      class: 'outline',
-    };
+    this.buttons = [
+      { label: 'Login', onAction: this.onSubmitForm.bind(this) },
+      { label: 'Register', type: 'link', goTo: '/register', class: 'outline' },
+    ];
   }
 }

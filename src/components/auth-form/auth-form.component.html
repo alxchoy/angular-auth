@@ -1,0 +1,16 @@
+<div class="auth-form">
+  <div class="auth-form__wrapper">
+    <div class="grow">
+      <h1 class="mb-4 text-h1">{{ formTitle }}</h1>
+      <form class="flex flex-col gap-5" [formGroup]="authForm">
+        @for (field of fieldsForm; track $index) {
+          <ch-form-field [formGroup]="authForm" [field]="field"></ch-form-field>
+        }
+        @for (button of buttonsForm; track $index) {
+          <ch-button [btn]="button"></ch-button>
+        }
+      </form>
+    </div>
+    <img class="max-w-[50%]" src="/home-cinema.svg" />
+  </div>
+</div>
