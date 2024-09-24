@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface Button {
   class?: 'primary' | 'outline';
@@ -13,6 +14,7 @@ export interface Button {
   standalone: true,
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
+  imports: [RouterLink],
 })
 export class ButtonComponent implements OnInit {
   @Input({ required: true }) btn!: Button;

@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   standalone: true,
   templateUrl: './home.component.html',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor() {
+    console.log('home constructor');
+  }
+}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService, FormService } from '@core/services';
-import { AuthFormComponent } from '@features/auth/components/auth-form/auth-form.component';
 import { RegisterFormType } from '@features/auth/models/auth.types';
 import {
   FormField,
@@ -21,25 +20,18 @@ import { markAsTouchedFields } from '@shared/helpers/form-helper';
   standalone: true,
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  imports: [
-    FormFieldComponent,
-    ReactiveFormsModule,
-    ButtonComponent,
-    AuthFormComponent,
-  ],
+  imports: [FormFieldComponent, ReactiveFormsModule, ButtonComponent],
   providers: [AuthService, FormService],
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup<RegisterFormType>;
   fields!: FormField[];
   buttons!: Button[];
-  formTitle: string;
 
   constructor(
     private authService: AuthService,
     private formService: FormService,
   ) {
-    this.formTitle = 'Register';
     this.setFormFields();
     this.setFormButtons();
   }

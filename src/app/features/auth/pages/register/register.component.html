@@ -1,7 +1,9 @@
-<ch-auth-form
-  [formTitle]="formTitle"
-  [authForm]="registerForm"
-  [fieldsForm]="fields"
-  [buttonsForm]="buttons"
->
-</ch-auth-form>
+<h1 class="mb-4 text-h1">New user</h1>
+<form class="flex flex-col gap-5" [formGroup]="registerForm">
+  @for (field of fields; track $index) {
+    <ch-form-field [formGroup]="registerForm" [field]="field"></ch-form-field>
+  }
+  @for (button of buttons; track $index) {
+    <ch-button [btn]="button"></ch-button>
+  }
+</form>
