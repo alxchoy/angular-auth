@@ -11,7 +11,8 @@ module.exports = {
         primaryDark: '#533324',
         primaryLight: '#8a6451',
         danger: '#C71508',
-        gray: '#BEBEBE'
+        gray: '#BEBEBE',
+        link: '#843c19'
       },
       fontSize: {
         'h1': ['3rem', { fontWeight: '500', lineHeight: '1.5' }]

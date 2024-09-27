@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../pages/home/home.component';
+import { HomeComponent } from '@features/home/home.component';
 import { AuthLayoutComponent } from '@features/auth/components/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
@@ -15,5 +15,5 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
