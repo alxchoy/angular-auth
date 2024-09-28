@@ -1,4 +1,4 @@
-<h1 class="title-gradient mb-4 text-h1">Welcome back!</h1>
+<h1 class="mb-4 text-h1">Welcome back!</h1>
 <form class="flex flex-col gap-5" [formGroup]="loginForm">
   @for (field of fields; track $index) {
     <ch-form-field [formGroup]="loginForm" [field]="field"></ch-form-field>

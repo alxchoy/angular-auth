@@ -17,6 +17,7 @@ type AuthResSupabase = {
 
 @Injectable()
 export class SupabaseService implements AuthRepository {
+  // currentUser$: Observable<User>;
   private client: SupabaseClient;
   private authUrl = `${environment.supabaseConfig.url}/auth/v1`;
 
