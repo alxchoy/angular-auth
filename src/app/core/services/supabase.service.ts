@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map, of } from 'rxjs';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { map, Observable, of } from "rxjs";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import {
-  AuthRes,
   AuthRepository,
+  AuthRes,
   LoginReq,
   RegisterReq,
-} from '@features/auth/models';
-import { environment } from '@environments/environment';
+} from "@features/auth/models";
+import { environment } from "@environments/environment";
 
 type AuthResSupabase = {
   id: string;
@@ -31,9 +31,11 @@ export class SupabaseService implements AuthRepository {
   signUp({ email, password, fullName }: RegisterReq): Observable<AuthRes> {
     return this.http
       .post<AuthResSupabase>(
-        `${this.authUrl}/signup?redirect_to=${encodeURIComponent(
-          `${window.location.origin}/home/`,
-        )}`,
+        `${this.authUrl}/signup?redirect_to=${
+          encodeURIComponent(
+            `${window.location.origin}/home/`,
+          )
+        }`,
         {
           email,
           password,

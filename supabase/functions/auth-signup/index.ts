@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { email, password } = await req.json();
+    const { email, password, fullName } = await req.json();
     const headers = new Headers({
       ...corsHeaders,
       "Content-Type": "application/json",
@@ -22,27 +22,31 @@ Deno.serve(async (req) => {
       Deno.env.get("PROJECT_URL") ?? "",
       Deno.env.get("API_KEY") ?? "",
     );
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
+    const { data, error } = await supabaseClient.auth.signUp({
       email,
       password,
+      options: {
+        data: { full_name: fullName },
+        emailRedirectTo: "http://localhost:4200/home",
+      },
     });
     if (error) throw error;
 
     const userData = {
-      id: data.user.id,
-      email: data.user.email,
-      metadata: data.user.user_metadata,
-      createdAt: data.user.created_at,
-      updatedAt: data.user.updated_at,
+      id: data.user?.id,
+      email: data.user?.email,
+      metadata: data.user?.user_metadata,
+      createdAt: data.user?.created_at,
+      updatedAt: data.user?.updated_at,
     };
 
     const cookie: Cookie = {
       name: "access_token",
-      value: data.session.access_token,
+      value: data.session?.access_token ?? "",
       secure: true,
       httpOnly: true,
       sameSite: "Strict",
-      maxAge: data.session.expires_in,
+      maxAge: data.session?.expires_in,
     };
 
     setCookie(headers, cookie);
