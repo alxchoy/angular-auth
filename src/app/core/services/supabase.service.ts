@@ -9,15 +9,18 @@ import {
   RegisterReq,
 } from "@features/auth/models";
 import { environment } from "@environments/environment";
+import { User } from "@core/models/user";
 
 type AuthResSupabase = {
   id: string;
   email: string;
+  metadata: { fullName: string; age?: number };
+  createdAt: string;
+  updatedAt: string;
 };
 
 @Injectable()
 export class SupabaseService implements AuthRepository {
-  // currentUser$: Observable<User>;
   private client: SupabaseClient;
   private authUrl = `${environment.supabaseConfig.url}/auth/v1`;
 
@@ -28,29 +31,38 @@ export class SupabaseService implements AuthRepository {
     );
   }
 
-  signUp({ email, password, fullName }: RegisterReq): Observable<AuthRes> {
-    return this.http
-      .post<AuthResSupabase>(
-        `${this.authUrl}/signup?redirect_to=${
-          encodeURIComponent(
-            `${window.location.origin}/home/`,
-          )
-        }`,
-        {
-          email,
-          password,
-          data: { full_name: fullName },
-        },
-      )
-      .pipe(map((data) => ({ user: { id: data.id, email: data.email } })));
+  signUp({ email, password, fullName }: RegisterReq): Observable<User> {
+    return this.http.post<AuthResSupabase>(
+      `${environment.supabaseConfig.functionsUrl}/auth-signup`,
+      { fullName, email, password },
+    ).pipe(
+      map((data) => ({
+        ...this.mapToUser(data),
+        createdAt: data.createdAt,
+        updated_at: data.updatedAt,
+      })),
+    );
   }
 
-  signIn({ email, password }: LoginReq): Observable<AuthRes> {
+  signIn({ email, password }: LoginReq): Observable<User> {
     return this.http
       .post<AuthResSupabase>(`${this.authUrl}/token?grant_type=password`, {
         email,
         password,
       })
-      .pipe(map((data) => ({ user: { id: data.id, email: data.email } })));
+      .pipe(map((data) => ({
+        ...this.mapToUser(data),
+        createdAt: data.createdAt,
+        updated_at: data.updatedAt,
+      })));
+  }
+
+  private mapToUser(data: AuthResSupabase): User {
+    return {
+      id: data.id,
+      email: data.email,
+      fullName: data.metadata.fullName,
+      age: data.metadata.age,
+    };
   }
 }

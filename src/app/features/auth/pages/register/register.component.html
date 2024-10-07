@@ -4,6 +4,9 @@
     <ch-form-field [formGroup]="registerForm" [field]="field"></ch-form-field>
   }
   @for (button of buttons; track $index) {
-    <ch-button [btn]="button"></ch-button>
+    <ch-button
+      [btn]="button"
+      [isLoading]="button.type === 'btn' ? (isLoading$ | async)! : false"
+    ></ch-button>
   }
 </form>

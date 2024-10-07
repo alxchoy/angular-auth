@@ -1,7 +1,6 @@
 .btn {
   @apply border border-primary rounded;
-  @apply block;
-  @apply text-center;
+  @apply flex justify-center items-center;
   @apply w-full;
   @apply py-2.5;
 
