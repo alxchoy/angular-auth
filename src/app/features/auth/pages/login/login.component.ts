@@ -11,6 +11,7 @@ import {
 } from "@shared/components/button/button.component";
 import { markAsTouchedFields } from "@shared/helpers/form-helper";
 import { EmailField, FormField, PasswordField } from "@shared/models/form";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "auth-login",
@@ -35,6 +36,7 @@ export class LoginComponent {
     private authService: AuthService,
     private formService: FormService,
     private loaderService: LoaderService,
+    private router: Router,
   ) {
     this.loading$ = this.loaderService.loader$;
     this.setFormFields();
@@ -51,7 +53,9 @@ export class LoginComponent {
       return;
     }
     const { email, password } = this.loginForm.value;
-    this.authService.login({ email: email!, password: password! }).subscribe();
+    this.authService.login({ email: email!, password: password! }).subscribe(
+      () => this.router.navigateByUrl("/"),
+    );
   }
 
   private setFormFields() {

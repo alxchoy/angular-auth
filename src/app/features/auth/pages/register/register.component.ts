@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthService, FormService, LoaderService } from "@core/services";
 import { RegisterFormType } from "@features/auth/models/auth.types";
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private formService: FormService,
     private loaderService: LoaderService,
+    private router: Router,
   ) {
     this.isLoading$ = this.loaderService.loader$;
     this.setFormFields();
@@ -59,7 +61,7 @@ export class RegisterComponent implements OnInit {
     const { email, password, fullName } = this.registerForm.value;
     this.authService
       .register({ email: email!, password: password!, fullName: fullName! })
-      .subscribe();
+      .subscribe(() => this.router.navigateByUrl("/email-verify"));
   }
 
   private setFormFields() {
@@ -89,7 +91,11 @@ export class RegisterComponent implements OnInit {
 
   private setFormButtons() {
     this.buttons = [
-      { label: "Register", onAction: this.onSubmitForm.bind(this) },
+      {
+        label: "Register",
+        type: "btn",
+        onAction: this.onSubmitForm.bind(this),
+      },
       { label: "Login", type: "link", goTo: "/login", class: "outline" },
     ];
   }
